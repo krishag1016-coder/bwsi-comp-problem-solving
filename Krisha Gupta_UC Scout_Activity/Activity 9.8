@@ -1,0 +1,80 @@
+""" 
+This is my UC Scout project: it is an app that asks the user for different test grades that will be 
+added to a list, and the program will tell them different info based on the scores.
+"""
+
+# Assign variables and list
+test_grades = []
+pass_grades = []
+fail_grades = []
+passing_score = int(input("Enter the passing score: "))
+
+# Function get user scores
+def get_scores():
+    while True:
+        score = int(input("Score: "))
+        if score == -1:
+            break
+        else:
+            test_grades.append(score)
+
+# Function to check if grades are passing or failing
+def check_grades(test_grades, passing_score):
+    for score in test_grades:
+        if score >= passing_score:
+            pass_grades.append(score)
+        else:
+            fail_grades.append(score)
+
+# Set-Up the App program
+print("Welcome to the Grade Checker App!")
+print("Enter as many grades as you want. We will tell you if it is passing or failing. Put -1 to stop adding grades.")
+
+# Call get user scores function and sort
+get_scores()
+test_grades.sort()
+print("Your grades lowest to highest are:")
+print(test_grades)
+
+# Print passing grades and failing grades
+check_grades(test_grades, passing_score)
+if pass_grades:
+    print("The grades that are passing are: ")
+    print(pass_grades)
+else:
+    print("There are no passing grades. :(")
+if fail_grades:
+    print("The grades that are not passing are: ")
+    print(fail_grades)
+else:
+    print("There are no failing grades. :(")
+
+# Print highest passing and lowest failing scores
+if pass_grades:
+    highest = max(pass_grades)
+    print("Your highest passing score is " + str(highest))
+else:
+    highest = max(fail_grades)
+    print("You have no passing grades. Your highest score (though it is not passing) is " + str(highest))
+if fail_grades:
+    lowest = min(fail_grades)
+    print("Your lowest failing score is " + str(lowest))
+else:
+    lowest = min(pass_grades)
+    print("You have no failing grades. Your lowest score (though it is passing) is " + str(lowest))
+
+# Print passing grades and failing grades if there is higher passing score
+print("Here is what would happen if the passing grade was 10 percent higher.")
+pass_grades = []
+fail_grades = []
+check_grades(test_grades, passing_score + 10)
+if pass_grades:
+    print("The grades that are passing are: ")
+    print(pass_grades)
+else:
+    print("There are no passing grades. :(")
+if fail_grades:
+    print("The grades that are not passing are: ")
+    print(fail_grades)
+else:
+    print("There are no failing grades. :(")
